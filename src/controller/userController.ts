@@ -13,7 +13,7 @@ class UserController{
             }
 
             await userService
-                .login(req)
+                .login(req.body)
                 .then((serviceRes) => {
                     res.json(serviceRes)
                 })
@@ -39,7 +39,7 @@ class UserController{
             }
     
             await userService
-                .makeRegister(req)
+                .makeRegister(req.body)
                 .then((serviceRes) => {
                     res.json(serviceRes)
                 })

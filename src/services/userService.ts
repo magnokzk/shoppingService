@@ -9,12 +9,12 @@ const userRep = dataSource.getRepository(User)
 
 class UserService{
 
-    public async login(req:Request) {
+    public async login(userInfo:User) {
         return await userRep
             .findOne({
                 where: {
-                    email   : req.body.email,
-                    password: encrypt(req.body.password)
+                    email   : userInfo.email,
+                    password: encrypt(userInfo.password)
                 }
             })
             .then((res) => {
@@ -31,16 +31,16 @@ class UserService{
             })
     }
 
-    public async makeRegister(req:Request) {
+    public async makeRegister(userInfo:User) {
         const user = new User()
-        user.firstName  = req.body.firstName
-        user.lastName   = req.body.lastName
-        user.email      = req.body.email
-        user.password   = encrypt(req.body.password)
+        user.firstName  = userInfo.firstName
+        user.lastName   = userInfo.lastName
+        user.email      = userInfo.email
+        user.password   = encrypt(userInfo.password)
 
         await userRep.findOne({
             where: {
-                email: req.body.email
+                email: userInfo.email
             }
         }).then((res) => {
             if(res) {
