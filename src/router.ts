@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { userController } from "./controller/userController"
-import { firstMiddleware } from "./middleware/firstMiddleware"
+import { userRouter } from "./routes/userRoutes";
 
 const router: Router = Router()
 
 //Routes
-router.post("/login", userController.login);
-router.post("/register", userController.register);
+router.use(
+    userRouter
+)
+
 
 export { router };

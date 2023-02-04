@@ -1,8 +1,9 @@
-import { Request } from "express";
+import { Request } from "express"
 import { dataSource } from '../datasource'
-import { User } from "../entity/User";
+import { User } from "../entity/User"
 
-import bcrypt from 'bcrypt'
+import { encrypt } from "../utils/CryptoManager"
+import { generateJwt } from "../utils/JwtManager"
 
 const userRep = dataSource.getRepository(User)
 
@@ -12,8 +13,8 @@ class UserService{
         return await userRep
             .findOne({
                 where: {
-                    email: req.body.email,
-                    password: req.body.password
+                    email   : req.body.email,
+                    password: encrypt(req.body.password)
                 }
             })
             .then((res) => {
@@ -21,7 +22,12 @@ class UserService{
                     throw 'Unauthorized'
                 }
 
-                return res
+                return {
+                    token: generateJwt({
+                            id      : res.id,
+                            email   : res.email
+                        })
+                }
             })
     }
 
@@ -30,7 +36,7 @@ class UserService{
         user.firstName  = req.body.firstName
         user.lastName   = req.body.lastName
         user.email      = req.body.email
-        user.password   = req.body.password
+        user.password   = encrypt(req.body.password)
 
         await userRep.findOne({
             where: {
