@@ -12,3 +12,7 @@ export const generateJwt = (payload:object|string): string => {
         { expiresIn: "2h" }
     )
 }
+
+export const validateJwt = (token:string): string | jwt.JwtPayload  => {
+    return jwt.verify(token, process.env.JWT_SECRET)
+}
