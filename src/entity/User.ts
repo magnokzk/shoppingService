@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from "typeorm"
+import { List } from "./List"
 
 @Entity()
 export class User {
@@ -14,6 +15,10 @@ export class User {
     @Column()
     email!: string
 
-    @Column()
+    @Column({select: false})
     password!: string
+
+    @OneToMany(() => List, (list) => list.user)
+    @JoinColumn({name: 'creator_id'})
+    lists!: List[]
 }

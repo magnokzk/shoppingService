@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm"
 import { User } from './entity/User'
 import "dotenv/config"
+import { List } from "./entity/List"
+import { Item } from "./entity/Item"
 
 const AppDataSource = new DataSource({
     type    : "mysql",
@@ -10,7 +12,9 @@ const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     entities: [
-        User
+        User,
+        List,
+        Item
     ]
 })
 

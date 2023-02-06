@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { userRouter } from "./routes/userRoutes";
 import cors from 'cors'
+import { listRouter } from "./routes/listRoutes";
+import { itemRouter } from "./routes/itemRoutes";
 
 // cors configuration
 const options: cors.CorsOptions = {
@@ -27,7 +29,9 @@ const router: Router = Router()
 router.use(
     // setting cors options
     cors(options),
-    userRouter
+    userRouter,
+    listRouter,
+    itemRouter
 )
 
 export { router };
