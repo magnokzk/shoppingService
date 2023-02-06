@@ -8,9 +8,6 @@ class ListController{
 
     public async create(req:Request, res:Response) {
         try {
-            if(!req.body.creator_id){
-                throw 'Creator id is required'
-            }
             if(!req.body.title){
                 throw 'List title is required'
             }

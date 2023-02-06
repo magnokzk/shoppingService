@@ -29,9 +29,11 @@ class ItemController{
         }
     }
     
-    public async updateStatus(req:Request, res:Response) {
+    public async update(req:Request, res:Response) {
         try {
-            res.json(await itemRep.save(req.body))
+            const saved = await itemRep.save(req.body)
+            console.log(saved)
+            res.json(saved)
         } catch (err) {
             console.log(err)
             res.status(500).end()
