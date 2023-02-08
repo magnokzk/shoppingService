@@ -1,9 +1,11 @@
-import { Router } from "express";
-import { listController } from "../controller/listController";
+import { Router } from "express"
+import { listController } from "../controller/listController"
 
 const listRouter:Router = Router()
 
-listRouter.post("/list/create", listController.create);
-listRouter.get("/list", listController.getAll)
+listRouter.post("/list/create", listController.create)
+listRouter.route("/list")
+    .get(listController.getByUserId)
+    .delete(listController.deleteList)
 
 export { listRouter };

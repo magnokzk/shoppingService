@@ -1,9 +1,8 @@
-import { Request } from "express"
 import { dataSource } from '../datasource'
 import { User } from "../entity/User"
 
 import { encrypt } from "../utils/CryptoManager"
-import { generateJwt, validateJwt } from "../utils/JwtManager"
+import { generateJwt } from "../utils/JwtManager"
 
 const userRep = dataSource.getRepository(User)
 

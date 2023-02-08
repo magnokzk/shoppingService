@@ -1,3 +1,4 @@
+import { IncomingHttpHeaders } from 'http'
 import jwt from 'jsonwebtoken'
 
 /**
@@ -13,6 +14,6 @@ export const generateJwt = (payload:object|string): string => {
     )
 }
 
-export const validateJwt = (token:string): string | jwt.JwtPayload  => {
+export const validateJwt = (token:string):any  => {
     return jwt.verify(token, process.env.JWT_SECRET)
 }
