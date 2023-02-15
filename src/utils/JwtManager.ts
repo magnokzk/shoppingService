@@ -1,12 +1,13 @@
 import { IncomingHttpHeaders } from 'http'
 import jwt from 'jsonwebtoken'
+import { JwtData } from '../types/interfaces/jwt'
 
 /**
  * Generates a JWT token using the enviroment secret
- * @param {object | string} payload item that will be inserted into the token payload
+ * @param {JwtData} payload item that will be inserted into the token payload
  * @returns {string} JWT token generated with the sent payload
  */
-export const generateJwt = (payload:object|string): string => {
+export const generateJwt = (payload:JwtData): string => {
     return jwt.sign(
         payload, 
         process.env.JWT_SECRET, 
@@ -14,6 +15,6 @@ export const generateJwt = (payload:object|string): string => {
     )
 }
 
-export const validateJwt = (token:string):any  => {
+export const validateJwt = (token:string):JwtData  => {
     return jwt.verify(token, process.env.JWT_SECRET)
 }
