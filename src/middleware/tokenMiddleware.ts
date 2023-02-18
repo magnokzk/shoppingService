@@ -8,7 +8,7 @@ export const authorization = (req:Request, res:Response, next:NextFunction) => {
                 res.status(401).end()
                 return
             }
-            validateJwt(token)
+            res.locals.userTokenInfo = validateJwt(token)
     
             next()
         } catch (err) {

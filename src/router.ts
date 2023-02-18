@@ -3,6 +3,7 @@ import { userRouter } from "./routes/userRoutes";
 import cors from 'cors'
 import { listRouter } from "./routes/listRoutes";
 import { itemRouter } from "./routes/itemRoutes";
+import { shareRouter } from "./routes/shareRoutes";
 
 // cors configuration
 const options: cors.CorsOptions = {
@@ -31,7 +32,8 @@ router.use(
     cors(options),
     userRouter,
     listRouter,
-    itemRouter
+    itemRouter,
+    shareRouter
 )
 
 export { router };

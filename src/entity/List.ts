@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, ManyToOne, OneToOne } from "typeorm"
 import { Item } from "./Item"
+import { SharedRelation } from "./SharedRelation"
 import { User } from "./User"
 
 @Entity()
@@ -23,4 +24,8 @@ export class List {
     @ManyToOne(() => User, (user) => user.lists)
     @JoinColumn({name: 'creator_id'})
     user!: User
+
+    @OneToOne(() => SharedRelation, (shared) => shared.list)
+    @JoinColumn({name: 'id', referencedColumnName: 'list_id'})
+    shared_relation!: SharedRelation
 }

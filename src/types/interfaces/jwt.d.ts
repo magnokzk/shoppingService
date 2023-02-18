@@ -1,3 +1,4 @@
-import { JwtPayload } from "jsonwebtoken";
-
-type JwtData = string | JwtPayload
+export type JwtData = {
+    id: number
+    email: string
+}

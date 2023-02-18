@@ -5,6 +5,8 @@ import { authorization } from '../middleware/tokenMiddleware'
 const listRouter:Router = Router()
 
 listRouter.post("/list/create", authorization, listController.create)
+listRouter.route("/list/shared")
+    .get(authorization, listController.getSharedListByUserId)
 listRouter.route("/list")
     .get(authorization, listController.getByUserId)
     .delete(authorization, listController.deleteList)

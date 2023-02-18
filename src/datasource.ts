@@ -3,6 +3,8 @@ import { User } from './entity/User'
 import "dotenv/config"
 import { List } from "./entity/List"
 import { Item } from "./entity/Item"
+import { SharedRelation } from "./entity/SharedRelation"
+import { ShareRequest } from "./entity/ShareRequest"
 
 const AppDataSource = new DataSource({
     type    : "mysql",
@@ -14,7 +16,9 @@ const AppDataSource = new DataSource({
     entities: [
         User,
         List,
-        Item
+        Item,
+        SharedRelation,
+        ShareRequest
     ]
 })
 

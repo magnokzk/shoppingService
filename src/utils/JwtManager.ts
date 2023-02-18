@@ -15,6 +15,12 @@ export const generateJwt = (payload:JwtData): string => {
     )
 }
 
+
+/**
+ * Validates a JWT token using the enviroment secret
+ * @param {string} token token that will be validated
+ * @returns {JwtData} Data that will be returned from token
+ */
 export const validateJwt = (token:string):JwtData  => {
-    return jwt.verify(token, process.env.JWT_SECRET)
+    return jwt.verify(token, process.env.JWT_SECRET) as JwtData
 }
